@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belajar DOM</title>
+  </head>
+  <body>
+    <h1 id="judul">
+      Hai aku sedang belajar DOM bersama pak Yusuf Abdilhaq S.kom
+    </h1>
+    <h1 id="dom">Belajar DOM</h1>
+    <h1 id="fav">DAN YA! KLIK DI BAWAH</h1>
+    <button onclick="ubahTeks()">Click Me!</button>
+
+    <div>
+      <label>Warna Teks:</label>
+      <input type="color" id="warnaTeksInput" />
+      <input type="text" id="warnaTeksText" />
+      <br />
+
+      <label>Warna Latar:</label>
+      <input type="color" id="warnaLatarInput" />
+      <input type="text" id="warnaLatarText" />
+      <br /><br />
+      <button onclick="ubahWarnaCustom()">Click for your custom color</button>
+      <button onclick="ubahWarnaAcak()">Click for random color</button>
+    </div>
+
+    <script>
+      function ubahTeks() {
+        document.getElementById("fav").innerHTML = "Aku Sayang Kamu!";
+        document.getElementById("fav").style.color = "darkblue";
+        document.getElementById("fav").style.backgroundColor = "lightblue";
+      }
+
+      document.getElementById("judul").innerHTML = "HALLO MANUSIA FAVORIT!";
+      document.getElementById("dom").innerHTML = "Semoga, Selalu bahagia ya!";
+      document.getElementById("dom").style.color = "red";
+
+      //untuk warna acak
+      function getRandomColor() {
+        const letters = "0123456789ABCDEF"; //untuk karakter warna hex
+        let color = "#"; //warn hex biasanya di awali dengan tanda pagar
+        for (let i = 0; i < 6; i++) {
+          //warna hex memiliki 6 karakter setelah simbol pagar
+          color += letters[Math.floor(Math.random() * 16)]; //untuk mengambil karakter acak dari letters
+        }
+        return color;
+      }
+
+      function ubahWarnaAcak() {
+        const warnaTeksAcak = getRandomColor();
+        const warnaLatarAcak = getRandomColor();
+
+        document.getElementById("fav").style.color = warnaTeksAcak;
+        document.getElementById("fav").style.backgroundColor = warnaLatarAcak;
+
+        //input warna acak
+        document.getElementById("warnaTeksInput").value = warnaTeksAcak;
+        document.getElementById("warnaLatarInput").value = warnaLatarAcak;
+        document.getElementById("warnaTeksText").value = warnaTeksAcak;
+        document.getElementById("warnaLatarText").value = warnaLatarAcak;
+      }
+
+      //input warna sesuai keinginan
+      function ubahWarnaCustom() {
+        const favElement = document.getElementById("fav");
+        const warnaTeks =
+          document.getElementById("warnaTeksText").value ||
+          document.getElementById("warnaTeksInput").value;
+        const warnaLatar =
+          document.getElementById("warnaLatarText").value ||
+          document.getElementById("warnaLatarInput").value;
+
+        //menerapkan warna
+        favElement.style.color = warnaTeks;
+        favElement.style.backgroundColor = warnaLatar;
+      }
+    </script>
+  </body>
+</html>
